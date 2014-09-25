@@ -47,22 +47,28 @@ public final class Controller
             boolean exitProgram = false;
             while (!exitProgram)
             {
-                View.getInstance().printMenu(0);
-                View.getInstance().printMessage(15);
-                String inputMenu = Model.keyboardInput();
-                if (inputMenu.isEmpty()) exitProgram = true;
+//                View.getInstance().printMenu(0);
+//                View.getInstance().printMessage(15);
+//                String inputMenu = Model.keyboardInput();
+//                if (inputMenu.isEmpty()) exitProgram = true;
+//                else{
+                Integer choiceNew = checkMenuItem(0, '6');
+                if(choiceNew == 0){exitProgram = true;}
                 else{
-                    if(checkMenuItem('1', '6', inputMenu)){
-                        Integer choice = Integer.parseInt(inputMenu);
-                        View.getInstance().printMenu(choice);
-                        menuDraw(choice);
-                    }
-                    else{
-                        View.getInstance().printErrorText(1);
-                        if(LOGGER.isLoggable(Level.FINE)){
-                            LOGGER.log(Level.FINE, "Error in a menu selection");}
-                    }
+                    menuDraw(choiceNew);
                 }
+
+//                    if(checkMenuItem('1', '6', inputMenu)){
+//                        Integer choice = Integer.parseInt(inputMenu);
+//                        View.getInstance().printMenu(choice);
+//                        menuDraw(choice);
+//                    }
+//                    else{
+//                        View.getInstance().printErrorText(1);
+//                        if(LOGGER.isLoggable(Level.FINE)){
+//                            LOGGER.log(Level.FINE, "Error in a menu selection");}
+//                    }
+//                }
             }
         }
         catch (Exception e){
@@ -130,6 +136,7 @@ public final class Controller
     private void firstMenuEngine(){
         if(LOGGER.isLoggable(Level.FINE)){
             LOGGER.fine("Menu select: list of books(1)");}
+        View.getInstance().printMenu(1);
         if (Model.checkAvailabilityBooks()){
             for(Book book : Model.getBooks()){
                 System.out.println(book);
@@ -149,6 +156,7 @@ public final class Controller
     private void secondMenuEngine(){
         if(LOGGER.isLoggable(Level.FINE)){
             LOGGER.fine("Menu select: add book(2)");}
+        View.getInstance().printMenu(2);
         String[] inputBookValues = View.getInstance().printAddBookMenu();
         if(checkBookValues(inputBookValues[0], inputBookValues[1], inputBookValues[2])){
             Model.addBook(inputBookValues[0], inputBookValues[1], inputBookValues[2]);
@@ -164,6 +172,7 @@ public final class Controller
     private void thirdMenuEngine(){
         if(LOGGER.isLoggable(Level.FINE)){
             LOGGER.fine("Menu select: delete book(3)");}
+        View.getInstance().printMenu(3);
         String isbn = Model.keyboardInput();
         if (Model.deleteBook(isbn)) {
             View.getInstance().printMessage(9);
@@ -200,7 +209,7 @@ public final class Controller
         if(LOGGER.isLoggable(Level.FINE)){
             LOGGER.fine("Menu select: Illustration(4)");}
         boolean returnMainMenu = false;
-        Integer selectSub = checkSubMenu(4, 4);
+        Integer selectSub = checkMenuItem(4, '4');
         if(selectSub == 0){
             returnMainMenu = true;
         }
@@ -345,7 +354,7 @@ public final class Controller
         if(LOGGER.isLoggable(Level.FINE)){
             LOGGER.fine("Menu select: Export(5)");}
         boolean returnMainMenu;
-        Integer selectSub = checkSubMenu(2, 5);
+        Integer selectSub = checkMenuItem(5, '2');
         if(selectSub == 0){
             returnMainMenu = true;
         }
@@ -391,7 +400,7 @@ public final class Controller
         if(LOGGER.isLoggable(Level.FINE)){
             LOGGER.fine("Menu select: Import(6)");}
         boolean returnMainMenu;
-        Integer selectSub = checkSubMenu(2, 6);
+        Integer selectSub = checkMenuItem(6, '2');
         if(selectSub == 0){
             returnMainMenu = true;
         }
@@ -652,35 +661,6 @@ public final class Controller
     }
 
     /**
-     * Служебный метод для проверки номера пункта меню, введённого пользователем и вывода текста меню.
-     * @param numberOfItems Integer - количество пунктов в меню.
-     * @param numberOfSubMenu Integer - номер пункта (раздела) главноно меню.
-     * @return Boolean: true, если введённое значение соответствует пунктам меню, иначе - false.
-     */
-    private int checkSubMenu(Integer numberOfItems, Integer numberOfSubMenu){
-        int result = 0;
-        boolean exit = false;
-        while (!exit){
-            View.getInstance().printMessage(15);
-            String inputSubMenu = Model.keyboardInput();
-            if (inputSubMenu.isEmpty()) {result = 0; exit = true;}
-            else{
-                if(checkMenuItem('1', numberOfItems.toString().charAt(0), inputSubMenu)){
-                    result = Integer.parseInt(inputSubMenu);
-                    exit = true;
-                }
-                else{
-                    View.getInstance().printErrorText(10);
-                    View.getInstance().printMenu(numberOfSubMenu);
-                }
-            }
-        }
-        if(LOGGER.isLoggable(Level.FINE)){
-            LOGGER.log(Level.FINE, "The result of check sub menu selection is: ", result);}
-        return result;
-    }
-
-    /**
      * Служебный метод для проверки допустимых значений атрибутов книги.
      * @param isbn String - Isbn книги.
      * @param title String - навзвание книги.
@@ -745,25 +725,38 @@ public final class Controller
         return resultCheck;
     }
 
-    /**
-     * Служебный метод для проверки номера пункта главного меню, введённого пользователем и вывода текста меню.
-     * @param startPattern char - номер первог пункта меню
-     * @param endPattern char - номер последнего пункта меню
-     * @param choice String - что ввёл пользователь
-     * @return Boolean: true, если введённое пользователем значение соответствует какому-либо пункту меню.
-     */
-    public boolean checkMenuItem(char startPattern, char endPattern, String choice){
-        boolean right = false;
+    public Integer checkMenuItem(Integer numberOfSubMenu, char endPattern){
+        View.getInstance().printMenu(numberOfSubMenu);
+        Integer select=0;
+        boolean exit = false;
         try {
-            Pattern pattern = Pattern.compile("["+startPattern+"-"+endPattern+"]");
-            right = pattern.matcher(choice).matches();
+            while (!exit){
+                View.getInstance().printMessage(15);
+                String inputMenu = Model.keyboardInput();
+                /** пустая строка - выход из метода с select=0 */
+                if (inputMenu.isEmpty()) {exit = true;}
+                /** если строка не пустая */
+                else{
+                    Pattern pattern = Pattern.compile("[1-"+endPattern+"]");
+                    boolean result = pattern.matcher(inputMenu).matches();
+                    if(result){
+                        /** пункт меню прошёл проверку - передаём его */
+                        select = Integer.parseInt(inputMenu);
+                        exit = true;
+                    }
+                    else{
+                        View.getInstance().printErrorText(10);
+                        View.getInstance().printMenu(numberOfSubMenu);
+                    }
+                }
+            }
+
         }
         catch (Exception e){View.getInstance().printErrorText(0);}
         if(LOGGER.isLoggable(Level.FINE)){
-            LOGGER.log(Level.FINE, "The result of check menu selection is: ", right);}
-        return right;
+            LOGGER.log(Level.FINE, "The result of check menu selection is: ", exit);}
+        return select;
     }
-
     /**
      * Служебный метод для поиска атрибутов книги в тексте файла импорта.
      * @param fileText String - текст для поиска.
