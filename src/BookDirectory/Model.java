@@ -1,7 +1,5 @@
 package BookDirectory;
 
-import com.sun.istack.internal.Nullable;
-
 import java.io.*;
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
@@ -252,7 +250,6 @@ public abstract class Model {
      * @return Book - объект Book (если книга есть в каталоге), иначе - null.
      * @see BookDirectory.Book
      */
-    @Nullable
     protected static Book getBookByISbn(String isbn) {
         Book book = null;
         for (Book bookInCatalog : getBooks()) {
