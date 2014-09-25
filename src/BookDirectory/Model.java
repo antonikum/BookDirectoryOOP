@@ -149,7 +149,6 @@ public abstract class Model {
 
     /**
      * Метод для ввода данных с клавиатуры
-     *
      * @return String - строка, введённая с клавиатуры
      */
     protected static String keyboardInput() {

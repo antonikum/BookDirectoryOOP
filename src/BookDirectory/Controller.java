@@ -47,24 +47,11 @@ public final class Controller
             boolean exitProgram = false;
             while (!exitProgram)
             {
-//                View.getInstance().printMenu(0);
-//                View.getInstance().printMessage(15);
-//                String inputMenu = Model.keyboardInput();
-//                if (inputMenu.isEmpty()) exitProgram = true;
-//                else{
                 Integer choiceNew = checkMenuItem(0, '6');
                 if(choiceNew == 0){exitProgram = true;}
                 else{
                     menuDraw(choiceNew);
                 }
-
-//                    if(checkMenuItem('1', '6', inputMenu)){
-//                        Integer choice = Integer.parseInt(inputMenu);
-//                        View.getInstance().printMenu(choice);
-//                        menuDraw(choice);
-//                    }
-//                    else{
-//                        View.getInstance().printErrorText(1);
 //                        if(LOGGER.isLoggable(Level.FINE)){
 //                            LOGGER.log(Level.FINE, "Error in a menu selection");}
 //                    }
@@ -725,6 +712,12 @@ public final class Controller
         return resultCheck;
     }
 
+    /**
+     * Служебный метод для навигация по пунктам меню.
+     * @param numberOfSubMenu - номер раздела, в котором находимся (0 - если главное меню).
+     * @param endPattern - количество пунктов меню в разделе.
+     * @return выбранный пункт меню раздела. 0 - если главное меню.
+     */
     public Integer checkMenuItem(Integer numberOfSubMenu, char endPattern){
         View.getInstance().printMenu(numberOfSubMenu);
         Integer select=0;
@@ -745,8 +738,10 @@ public final class Controller
                         exit = true;
                     }
                     else{
-                        View.getInstance().printErrorText(10);
+                        View.getInstance().printErrorText(1);
                         View.getInstance().printMenu(numberOfSubMenu);
+                        if(LOGGER.isLoggable(Level.FINE)){
+                           LOGGER.log(Level.FINE, "Error in a menu selection");}
                     }
                 }
             }
