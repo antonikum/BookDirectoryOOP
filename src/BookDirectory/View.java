@@ -72,10 +72,8 @@ public final class View
     private final String MENU_TEXT_BACK = "\nEnter - Назад в главное меню\n";
     private final String MENU_TEXT_BACK_ANY = "\nЛюбая клавиша - назад в главное меню\n";
     private final String MENU_TEXT_SEARCH_ILLUSTRATION = "\nПоиск иллюстраций...\n\n";
-    private final String MENU_ERROR_TEXT = "Ошибка в выборе пункта меню.\nПожалуйста, для продолжения работы введите" +
-            " номер пункта меню или или нажмите клавишу Enter для выхода из приложения.\n\n";
     private final String SUB_MENU_ERROR_TEXT = "Ошибка в выборе пункта меню.\nПожалуйста, для продолжения работы введите" +
-            " номер пункта меню или нажмите клавишу Enter для перехода в главное меню.\n";
+            " номер пункта меню или нажмите клавишу Enter для выхода из приложение или перехода в главное меню.\n";
     private final String TEXT_ERROR_BOOK_ADD_DUPLICATE = "Ошибка: введённый Вами ISBN уже присутствует в каталоге.\n";
     private final String TEXT_ERROR_BD = "Критическая ошибка: нет доступа к бд.\n";
     private final String TEXT_ERROR_TABLE_BLOCK = "Ошибка: таблица заблокирована.\n";
@@ -190,7 +188,7 @@ public final class View
     protected void printErrorText(Integer number){
         switch (number){
             case 0: {System.out.print(TEXT_ERROR);break;}
-            case 1: {System.out.print(MENU_ERROR_TEXT);break;}
+            case 1: {System.out.print(SUB_MENU_ERROR_TEXT);break;}
             case 2: {System.out.print(TEXT_ERROR_BD);break;}
             case 3: {System.out.print(TEXT_ERROR_KEYBOARD);break;}
             case 4: {System.out.print(TEXT_ERROR_BOOK_ADD_DUPLICATE);break;}
@@ -199,7 +197,7 @@ public final class View
             case 7: {System.out.print(TEXT_ERROR_BOOK_COUNT);break;}
             case 8: {System.out.print(TEXT_ERROR_ILLUSTRATION_ID);break;}
             case 9: {System.out.print(TEXT_ERROR_ID_FIND);break;}
-            case 10: {System.out.print(SUB_MENU_ERROR_TEXT);break;}
+            case 10: {System.out.print("");break;} //TODO
             case 11: {System.out.print(TEXT_ERROR_TITLE);break;}
             case 12: {System.out.print(TEXT_ERROR_AUTHOR);break;}
             case 13: {System.out.print(TEXT_ERROR_BOOK_ISBN_FORBIDDEN);break;}
