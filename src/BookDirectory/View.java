@@ -39,34 +39,36 @@ public final class View
     private final String TEXT_INVITE_ENTER_NUMBER = "\nВведите номер пункта меню: ";
     private final String MENU_TEXT_1 = "Главное меню:\n\n1 - Вывести список книг\n";
     private final String MENU_TEXT_11 = "Список книг в каталоге:\n";
-    private final String MENU_TEXT_2 = "2 - Добавить книгу\n";
-    private final String MENU_TEXT_21 = "Добавить книгу в каталог.\nПожалуйста, укажите данные о книге.\n1)Введите ISBN: ";
-    private final String MENU_TEXT_211 = "2)Введите название книги: ";
-    private final String MENU_TEXT_212 = "3)Введите автора книги: ";
-    private final String MENU_TEXT_3 = "3 - Удалить книгу\n";
-    private final String MENU_TEXT_31 = "Удалить книгу из каталога.\nВы можете удалить книгу из каталога по isbn.\nПожалуйста, введите ISBN: ";
-    private final String MENU_TEXT_4 = "4 - Иллюстрации\n";
-    private final String MENU_TEXT_4_TITLE = "\nРаздел: ИЛЛЮСТРАЦИИ\n\n";
-    private final String MENU_TEXT_41 = "1 - Добавить иллюстрацию\n";
-    private final String MENU_TEXT_411 = "Добавить иллюстрацию в каталог.\n";
-    private final String MENU_TEXT_411_COUNT = "Укажите количество книг в каталоге, где используется данная иллсютрация: ";
-    private final String MENU_TEXT_411_ISBN = "Введите ISBN: ";
-    private final String MENU_TEXT_412 = "\nУкажите id иллюстрации: ";
-    private final String MENU_TEXT_413 = "\nУкажите название иллюстрации: ";
-    private final String MENU_TEXT_414 = "\nУкажите автора иллюстрации: ";
-    private final String MENU_TEXT_42 = "2 - Удалить иллюстрацию\n";
-    private final String MENU_TEXT_421 = "Удалить книгу из каталога.\nВы можете удалить иллюстрацию из каталога по id.\nПожалуйста, введите id: ";
-    private final String MENU_TEXT_43 = "3 - Поиск книг по иллюстрации\n";
-    private final String MENU_TEXT_431 = "Поиск книг по иллюстрации\nПожалуйста, введите id иллюстрации: ";
-    private final String MENU_TEXT_44 = "4 - Список иллюстраций книги\n";
-    private final String MENU_TEXT_5 = "5 - Экспорт\n";
-    private final String MENU_TEXT_5_TITLE = "\nРаздел: ЭКСПОРТ\n\n";
-    private final String MENU_TEXT_51 = "1 - Экспорт одной книги\n";
-    private final String MENU_TEXT_52 = "2 - Экспорт каталога\n";
-    private final  String MENU_TEXT_6 = "6 - Импорт\n";
-    private final String MENU_TEXT_6_TITLE = "\nРаздел: ИМПОРТ\n\n";
-    private final String MENU_TEXT_61 = "1 - Импорт одной книги\n";
-    private final String MENU_TEXT_62 = "2 - Импорт каталога\n";
+    private final String MENU_TEXT_2 = "2 - Операции с книгами\n";
+    private final String MENU_TEXT_2_TITLE = "Раздел: КНИГИ.\n\n";
+    private final String MENU_TEXT_21 = "1 - Добавить книгу\n";
+    private final String MENU_TEXT_22 = "2 - Удалить книгу\n";
+    private final String MENU_TEXT_211 = "Добавить книгу в каталог.\n1)Введите ISBN: ";
+    private final String MENU_TEXT_212 = "2)Введите название книги: ";
+    private final String MENU_TEXT_213 = "3)Введите автора книги: ";
+    private final String MENU_TEXT_221 = "Удалить книгу из каталога.\nВы можете удалить книгу из каталога по isbn.\nПожалуйста, введите ISBN: ";
+    private final String MENU_TEXT_3 = "3 - Иллюстрации\n";
+    private final String MENU_TEXT_3_TITLE = "\nРаздел: ИЛЛЮСТРАЦИИ\n\n";
+    private final String MENU_TEXT_31 = "1 - Добавить иллюстрацию\n";
+    private final String MENU_TEXT_311 = "Добавить иллюстрацию в каталог.\n";
+    private final String MENU_TEXT_311_COUNT = "Укажите количество книг в каталоге, где используется данная иллсютрация: ";
+    private final String MENU_TEXT_311_ISBN = "Введите ISBN: ";
+    private final String MENU_TEXT_312 = "\nУкажите id иллюстрации: ";
+    private final String MENU_TEXT_313 = "\nУкажите название иллюстрации: ";
+    private final String MENU_TEXT_314 = "\nУкажите автора иллюстрации: ";
+    private final String MENU_TEXT_32 = "2 - Удалить иллюстрацию\n";
+    private final String MENU_TEXT_321 = "Удалить книгу из каталога.\nВы можете удалить иллюстрацию из каталога по id.\nПожалуйста, введите id: ";
+    private final String MENU_TEXT_33 = "3 - Поиск книг по иллюстрации\n";
+    private final String MENU_TEXT_331 = "Поиск книг по иллюстрации\nПожалуйста, введите id иллюстрации: ";
+    private final String MENU_TEXT_34 = "4 - Список иллюстраций книги\n";
+    private final String MENU_TEXT_4 = "4 - Экспорт\n";
+    private final String MENU_TEXT_4_TITLE = "\nРаздел: ЭКСПОРТ\n\n";
+    private final String MENU_TEXT_41 = "1 - Экспорт одной книги\n";
+    private final String MENU_TEXT_42 = "2 - Экспорт каталога\n";
+    private final  String MENU_TEXT_5 = "5 - Импорт\n";
+    private final String MENU_TEXT_5_TITLE = "\nРаздел: ИМПОРТ\n\n";
+    private final String MENU_TEXT_51 = "1 - Импорт одной книги\n";
+    private final String MENU_TEXT_52 = "2 - Импорт каталога\n";
     private final String MENU_TEXT_FILENAME = "Введите имя файла(без расширения .txt): ";
     private final String MENU_TEXT_EXIT = "\nEnter - Закрыть приложение\n";
     private final String MENU_TEXT_BACK = "\nEnter - Назад в главное меню\n";
@@ -120,13 +122,12 @@ public final class View
      * Служебный метод для начальной инициализации ассоциативного массива menuItems, где хранятся пункты меню в формате String.
      */
     private void setMenuItems(){
-        menuItems.put(0, MENU_TEXT_1 + MENU_TEXT_2 + MENU_TEXT_3 + MENU_TEXT_4 + MENU_TEXT_5 + MENU_TEXT_6 + MENU_TEXT_EXIT);
+        menuItems.put(0, MENU_TEXT_1 + MENU_TEXT_2 + MENU_TEXT_3 + MENU_TEXT_4 + MENU_TEXT_5 + MENU_TEXT_EXIT);
         menuItems.put(1, MENU_TEXT_11);
-        menuItems.put(2, MENU_TEXT_21);
-        menuItems.put(3, MENU_TEXT_31);
-        menuItems.put(4, MENU_TEXT_4_TITLE + MENU_TEXT_41 + MENU_TEXT_42 + MENU_TEXT_43 + MENU_TEXT_44 + MENU_TEXT_BACK);
+        menuItems.put(2, MENU_TEXT_2_TITLE + MENU_TEXT_21 + MENU_TEXT_22);
+        menuItems.put(3, MENU_TEXT_3_TITLE + MENU_TEXT_31 + MENU_TEXT_32 + MENU_TEXT_33 + MENU_TEXT_34 + MENU_TEXT_BACK);
+        menuItems.put(4, MENU_TEXT_4_TITLE + MENU_TEXT_41 + MENU_TEXT_42 + MENU_TEXT_BACK);
         menuItems.put(5, MENU_TEXT_5_TITLE + MENU_TEXT_51 + MENU_TEXT_52 + MENU_TEXT_BACK);
-        menuItems.put(6, MENU_TEXT_6_TITLE + MENU_TEXT_61 + MENU_TEXT_62 + MENU_TEXT_BACK);
     }
 
     /**
@@ -158,10 +159,11 @@ public final class View
      */
     protected String[] printAddBookMenu(){
         String[] inputBookValues = new String[3];
-        inputBookValues[0] = Model.keyboardInput(); //isbn
         System.out.print(MENU_TEXT_211);
-        inputBookValues[1] = Model.keyboardInput(); //название
+        inputBookValues[0] = Model.keyboardInput(); //isbn
         System.out.print(MENU_TEXT_212);
+        inputBookValues[1] = Model.keyboardInput(); //название
+        System.out.print(MENU_TEXT_213);
         inputBookValues[2] = Model.keyboardInput(); //автор
         return inputBookValues;
     }
@@ -172,11 +174,11 @@ public final class View
      */
     public String[] printAddIllustrationMenu(){
         String[] inputIllustrValues = new String[3];
-        System.out.print(MENU_TEXT_412);
+        System.out.print(MENU_TEXT_312);
         inputIllustrValues[0] = Model.keyboardInput(); //id
-        System.out.print(MENU_TEXT_413);
+        System.out.print(MENU_TEXT_313);
         inputIllustrValues[1] = Model.keyboardInput(); //назавание
-        System.out.print(MENU_TEXT_414);
+        System.out.print(MENU_TEXT_314);
         inputIllustrValues[2] = Model.keyboardInput(); //автор
         return inputIllustrValues;
     }
@@ -223,12 +225,13 @@ public final class View
     protected void printSubMenuText(Integer number){
         switch (number){
             case 0: {System.out.print(MENU_TEXT_BACK_ANY);break;}
-            case 1: {System.out.print(MENU_TEXT_411_ISBN);break;}
-            case 2: {System.out.print(MENU_TEXT_411);break;}
-            case 3: {System.out.print(MENU_TEXT_411_COUNT);break;}
-            case 4: {System.out.print(MENU_TEXT_421);break;}
-            case 5: {System.out.print(MENU_TEXT_431);break;}
+            case 1: {System.out.print(MENU_TEXT_311_ISBN);break;}
+            case 2: {System.out.print(MENU_TEXT_311);break;} //TODO объединить интерфейс 2 и 3 пунктов
+            case 3: {System.out.print(MENU_TEXT_311_COUNT);break;}
+            case 4: {System.out.print(MENU_TEXT_321);break;}
+            case 5: {System.out.print(MENU_TEXT_331);break;}
             case 6: {System.out.print(MENU_TEXT_FILENAME);break;}
+            case 7: {System.out.print(MENU_TEXT_221);break;}
         }
     }
 

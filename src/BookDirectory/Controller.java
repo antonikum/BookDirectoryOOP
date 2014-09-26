@@ -52,10 +52,6 @@ public final class Controller
                 else{
                     menuDraw(choiceNew);
                 }
-//                        if(LOGGER.isLoggable(Level.FINE)){
-//                            LOGGER.log(Level.FINE, "Error in a menu selection");}
-//                    }
-//                }
             }
         }
         catch (Exception e){
@@ -64,6 +60,34 @@ public final class Controller
         }
     }
 
+    public void mainMenuDrawNew(){
+        try {
+            boolean exitProgram = false;
+            while (!exitProgram)
+            {
+                MainMenu mainMenu = new MainMenu();
+                Integer choiceNew = mainMenu.checkMenuItem(0, '5');
+                if(choiceNew == 0){exitProgram = true;}
+                else{
+                   boolean returnMainManu = false;
+                    while (!returnMainManu){
+                        if(choiceNew == 1){
+                            SectionListings sectionListings = new SectionListings();
+                            returnMainManu = sectionListings.action1();
+                        }
+                        else if(choiceNew == 2){
+                            SectionBooks sectionBooks = new SectionBooks();
+                            returnMainManu = true;
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception e){
+            View.getInstance().printErrorText(0);
+            LOGGER.log(Level.SEVERE, "Application Error: " + e.toString() + "");
+        }
+    }
     /**
      * Метод для вывода пунктов меню, запросов к пользователю и вызова соответствующих методов действий (от 1 до 6).
      * @param choice Integer - выбор пункта главного меню.
