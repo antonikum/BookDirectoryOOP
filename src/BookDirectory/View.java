@@ -7,32 +7,15 @@ import java.util.logging.Logger;
 /**
  * Класс "Представление"(Вид) - отображение данных (модель MVC).
  * Паттерн Singleton.
+ *
  * @author dyakonov
  * @version 1.2
  */
-public final class View
-{
+public final class View {
     /**
      * Статическая переменная класса для хранения единственного экземпляра класса
      */
     private static View instance;
-
-    /**
-     * Конструктор класса с закрытым доступом (private).
-     */
-    private View(){}
-
-    /**
-     * "Геттер" для получения экземляра класса
-     * @return Единственный экземпляр класса View.
-     */
-    public static View getInstance(){
-        if(instance == null){
-            instance = new View();
-        }
-        return instance;
-    }
-
     private final String TEXT_HELLO = "Добро пожаловать в приложение \"Книжный каталог\".\n";
     private final String TEXT_INSTRUCTION = "Для начала работы, пожалуйста, введите с клавиатуры номер пункта меню (цифры от 1 до 6).\n" +
             "(или нажмите клавишу Enter для выхода из приложения)\n\n";
@@ -65,7 +48,7 @@ public final class View
     private final String MENU_TEXT_4_TITLE = "\nРаздел: ЭКСПОРТ\n\n";
     private final String MENU_TEXT_41 = "1 - Экспорт одной книги\n";
     private final String MENU_TEXT_42 = "2 - Экспорт каталога\n";
-    private final  String MENU_TEXT_5 = "5 - Импорт\n";
+    private final String MENU_TEXT_5 = "5 - Импорт\n";
     private final String MENU_TEXT_5_TITLE = "\nРаздел: ИМПОРТ\n\n";
     private final String MENU_TEXT_51 = "1 - Импорт одной книги\n";
     private final String MENU_TEXT_52 = "2 - Импорт каталога\n";
@@ -112,16 +95,33 @@ public final class View
     private final String TEXT_WARN_DUPLICATE_BOOK_CATALOG_IMPORT = "\nВнимание! Найденная книга уже присутствует в каталоге. ISBN: ";
     private final String TEXT_WARN_NEW_DATABASE = "\nВнимание! БД не сушествует!\nСоздание новой БД...";
     private final HashMap<Integer, String> menuItems = new HashMap<Integer, String>();
-
     /**
      * "Логгер" класса.
      */
     private final Logger LOGGER = Logger.getLogger(Model.class.getName());
 
     /**
+     * Конструктор класса с закрытым доступом (private).
+     */
+    private View() {
+    }
+
+    /**
+     * "Геттер" для получения экземляра класса
+     *
+     * @return Единственный экземпляр класса View.
+     */
+    public static View getInstance() {
+        if (instance == null) {
+            instance = new View();
+        }
+        return instance;
+    }
+
+    /**
      * Служебный метод для начальной инициализации ассоциативного массива menuItems, где хранятся пункты меню в формате String.
      */
-    private void setMenuItems(){
+    private void setMenuItems() {
         menuItems.put(0, MENU_TEXT_1 + MENU_TEXT_2 + MENU_TEXT_3 + MENU_TEXT_4 + MENU_TEXT_5 + MENU_TEXT_EXIT);
         menuItems.put(1, MENU_TEXT_11);
         menuItems.put(2, MENU_TEXT_2_TITLE + MENU_TEXT_21 + MENU_TEXT_22);
@@ -133,31 +133,35 @@ public final class View
     /**
      * Метод для начальной инициализации программы - вывод приветствия и главного меню.
      */
-    protected void initializeView(){
-     setMenuItems();
-     System.out.print(TEXT_HELLO + TEXT_INSTRUCTION);
-        if (LOGGER.isLoggable(Level.FINE)){
-            LOGGER.fine("Print welcome message");}
+    protected void initializeView() {
+        setMenuItems();
+        System.out.print(TEXT_HELLO + TEXT_INSTRUCTION);
+        if (LOGGER.isLoggable(Level.FINE)) {
+            LOGGER.fine("Print welcome message");
+        }
     }
 
 
     /**
      * Метод для вывода пунктов меню.
+     *
      * @param currentSection int - какой пункт главного меню нужно вывести (от 1 до 6)
      */
-    protected void printMenu(int currentSection){
-        if (currentSection >=0 && currentSection <= 6){
-          System.out.print(menuItems.get(currentSection));
-            if (LOGGER.isLoggable(Level.FINE)){
-                LOGGER.fine("Print menu");}
+    protected void printMenu(int currentSection) {
+        if (currentSection >= 0 && currentSection <= 6) {
+            System.out.print(menuItems.get(currentSection));
+            if (LOGGER.isLoggable(Level.FINE)) {
+                LOGGER.fine("Print menu");
+            }
         }
     }
 
     /**
      * Служебный метод для вывода сообщений и запросов при добавлении новой книги в каталог.
+     *
      * @return Массив String[3] - введённые пользователем 3 параметра книги (isbn, название, автор).
      */
-    protected String[] printAddBookMenu(){
+    protected String[] printAddBookMenu() {
         String[] inputBookValues = new String[3];
         System.out.print(MENU_TEXT_211);
         inputBookValues[0] = Model.keyboardInput(); //isbn
@@ -170,9 +174,10 @@ public final class View
 
     /**
      * Служебный метод для вывода сообщений и запросов при добавлении новой иллюстрации в каталог.
+     *
      * @return Массив String[3] - введённые пользователем 3 параметра иллюстрации (id, название, автор).
      */
-    public String[] printAddIllustrationMenu(){
+    public String[] printAddIllustrationMenu() {
         String[] inputIllustrValues = new String[3];
         System.out.print(MENU_TEXT_312);
         inputIllustrValues[0] = Model.keyboardInput(); //id
@@ -185,78 +190,226 @@ public final class View
 
     /**
      * Метод для вывода сообщений об ошибках (программы, пользователя, некорретных данных и т.п.)
+     *
      * @param number int - номер сообщения для вывода.
      */
-    protected void printErrorText(Integer number){
-        switch (number){
-            case 0: {System.out.print(TEXT_ERROR);break;}
-            case 1: {System.out.print(SUB_MENU_ERROR_TEXT);break;}
-            case 2: {System.out.print(TEXT_ERROR_BD);break;}
-            case 3: {System.out.print(TEXT_ERROR_KEYBOARD);break;}
-            case 4: {System.out.print(TEXT_ERROR_BOOK_ADD_DUPLICATE);break;}
-            case 5: {System.out.print(TEXT_ERROR_ISBN_FIND);break;}
-            case 6: {System.out.print(TEXT_ERROR_ILLUSTRATION_DUPLICATE);break;}
-            case 7: {System.out.print(TEXT_ERROR_BOOK_COUNT);break;}
-            case 8: {System.out.print(TEXT_ERROR_ILLUSTRATION_ID);break;}
-            case 9: {System.out.print(TEXT_ERROR_ID_FIND);break;}
-            case 10: {System.out.print("");break;} //TODO
-            case 11: {System.out.print(TEXT_ERROR_TITLE);break;}
-            case 12: {System.out.print(TEXT_ERROR_AUTHOR);break;}
-            case 13: {System.out.print(TEXT_ERROR_BOOK_ISBN_FORBIDDEN);break;}
-            case 14: {System.out.print(TEXT_ERROR_FILE_NOT_FOUND);break;}
-            case 15: {System.out.print(TEXT_WARN_DUPLICATE_BOOK_CATALOG_IMPORT);break;}
-            case 16: {System.out.print(TEXT_ERROR_IMPORT_TAG_BOOK);break;}
-            case 17: {System.out.print(TEXT_ERROR_IMPORT_FORMAT);break;}
-            case 18: {System.out.print(TEXT_ERROR_FILE_WRITE);break;}
-            case 19: {System.out.print(TEXT_ERROR_TABLE_BLOCK);break;}
-            case 20: {System.out.print(TEXT_ERROR_JAVA_NO_METHOD);break;}
-            case 21: {System.out.print(TEXT_ERROR_UNSUPPORTED_ENCODING);break;}
-            case 22: {System.out.print(TEXT_ERROR_IN_OUT);break;}
-            case 23: {System.out.print(TEXT_ERROR_LOGGER_SECURITY);break;}
+    protected void printErrorText(Integer number) {
+        switch (number) {
+            case 0: {
+                System.out.print(TEXT_ERROR);
+                break;
+            }
+            case 1: {
+                System.out.print(SUB_MENU_ERROR_TEXT);
+                break;
+            }
+            case 2: {
+                System.out.print(TEXT_ERROR_BD);
+                break;
+            }
+            case 3: {
+                System.out.print(TEXT_ERROR_KEYBOARD);
+                break;
+            }
+            case 4: {
+                System.out.print(TEXT_ERROR_BOOK_ADD_DUPLICATE);
+                break;
+            }
+            case 5: {
+                System.out.print(TEXT_ERROR_ISBN_FIND);
+                break;
+            }
+            case 6: {
+                System.out.print(TEXT_ERROR_ILLUSTRATION_DUPLICATE);
+                break;
+            }
+            case 7: {
+                System.out.print(TEXT_ERROR_BOOK_COUNT);
+                break;
+            }
+            case 8: {
+                System.out.print(TEXT_ERROR_ILLUSTRATION_ID);
+                break;
+            }
+            case 9: {
+                System.out.print(TEXT_ERROR_ID_FIND);
+                break;
+            }
+            case 10: {
+                System.out.print("");
+                break;
+            } //TODO
+            case 11: {
+                System.out.print(TEXT_ERROR_TITLE);
+                break;
+            }
+            case 12: {
+                System.out.print(TEXT_ERROR_AUTHOR);
+                break;
+            }
+            case 13: {
+                System.out.print(TEXT_ERROR_BOOK_ISBN_FORBIDDEN);
+                break;
+            }
+            case 14: {
+                System.out.print(TEXT_ERROR_FILE_NOT_FOUND);
+                break;
+            }
+            case 15: {
+                System.out.print(TEXT_WARN_DUPLICATE_BOOK_CATALOG_IMPORT);
+                break;
+            }
+            case 16: {
+                System.out.print(TEXT_ERROR_IMPORT_TAG_BOOK);
+                break;
+            }
+            case 17: {
+                System.out.print(TEXT_ERROR_IMPORT_FORMAT);
+                break;
+            }
+            case 18: {
+                System.out.print(TEXT_ERROR_FILE_WRITE);
+                break;
+            }
+            case 19: {
+                System.out.print(TEXT_ERROR_TABLE_BLOCK);
+                break;
+            }
+            case 20: {
+                System.out.print(TEXT_ERROR_JAVA_NO_METHOD);
+                break;
+            }
+            case 21: {
+                System.out.print(TEXT_ERROR_UNSUPPORTED_ENCODING);
+                break;
+            }
+            case 22: {
+                System.out.print(TEXT_ERROR_IN_OUT);
+                break;
+            }
+            case 23: {
+                System.out.print(TEXT_ERROR_LOGGER_SECURITY);
+                break;
+            }
         }
-        if(LOGGER.isLoggable(Level.WARNING)){
-            LOGGER.log(Level.WARNING, "Print Error!", number);}
+        if (LOGGER.isLoggable(Level.WARNING)) {
+            LOGGER.log(Level.WARNING, "Print Error!", number);
+        }
     }
 
     /**
      * Метод для вывода пунктов меню, служебных сообщений.
+     *
      * @param number int - номер сообщения для вывода.
      */
-    protected void printSubMenuText(Integer number){
-        switch (number){
-            case 0: {System.out.print(MENU_TEXT_BACK_ANY);break;}
-            case 1: {System.out.print(MENU_TEXT_311_ISBN);break;}
-            case 2: {System.out.print(MENU_TEXT_311);break;} //TODO объединить интерфейс 2 и 3 пунктов
-            case 3: {System.out.print(MENU_TEXT_311_COUNT);break;}
-            case 4: {System.out.print(MENU_TEXT_321);break;}
-            case 5: {System.out.print(MENU_TEXT_331);break;}
-            case 6: {System.out.print(MENU_TEXT_FILENAME);break;}
-            case 7: {System.out.print(MENU_TEXT_221);break;}
+    protected void printSubMenuText(Integer number) {
+        switch (number) {
+            case 0: {
+                System.out.print(MENU_TEXT_BACK_ANY);
+                break;
+            }
+            case 1: {
+                System.out.print(MENU_TEXT_311_ISBN);
+                break;
+            }
+            case 2: {
+                System.out.print(MENU_TEXT_311);
+                break;
+            } //TODO объединить интерфейс 2 и 3 пунктов
+            case 3: {
+                System.out.print(MENU_TEXT_311_COUNT);
+                break;
+            }
+            case 4: {
+                System.out.print(MENU_TEXT_321);
+                break;
+            }
+            case 5: {
+                System.out.print(MENU_TEXT_331);
+                break;
+            }
+            case 6: {
+                System.out.print(MENU_TEXT_FILENAME);
+                break;
+            }
+            case 7: {
+                System.out.print(MENU_TEXT_221);
+                break;
+            }
         }
     }
 
     /**
      * Метод для вывода сообщений, предупреждений и т.п.
+     *
      * @param number int - номер сообщения для вывода.
      */
-    protected void printMessage(Integer number){
-        switch (number){
-            case 0: {System.out.print(TEXT_SUCCESS_ADD_BOOK);break;}
-            case 1: {System.out.print(MENU_TEXT_BACK_ANY);break;}
-            case 2: {System.out.print(TEXT_SUCCESS_ADD_ILLUSTRATION);break;}
-            case 3: {System.out.print(TEXT_SUCCESS_DEL_BOOK_ILL);break;}
-            case 4: {System.out.print(TEXT_NOT_FIND_ILLUSTRATION_DELETE);break;}
-            case 5: {System.out.print(TEXT_WARN_NO_BOOK);break;}
-            case 6: {System.out.print(TEXT_SUCCESS_CATALOG_EXPORT);break;}
-            case 7: {System.out.print(TEXT_SUCCESS_ADD_BOOK_EXPORT);break;}
-            case 8: {System.out.print(TEXT_ERROR_BOOK_ISBN);break;}
-            case 9: {System.out.print(TEXT_SUCCESS_DEL_BOOK);break;}
-            case 10: {System.out.print(TEXT_BOOK_ADD_ILLUSTRATION);break;}
-            case 11: {System.out.print(TEXT_SUCCESS_NEW_DB);break;}
-            case 12: {System.out.print(TEXT_SUCCESS_DELETED_ILLUSTRATION);break;}
-            case 13: {System.out.print(MENU_TEXT_SEARCH_ILLUSTRATION);break;}
-            case 14: {System.out.print(TEXT_WARN_NEW_DATABASE);break;}
-            case 15: {System.out.print(TEXT_INVITE_ENTER_NUMBER);break;}
+    protected void printMessage(Integer number) {
+        switch (number) {
+            case 0: {
+                System.out.print(TEXT_SUCCESS_ADD_BOOK);
+                break;
+            }
+            case 1: {
+                System.out.print(MENU_TEXT_BACK_ANY);
+                break;
+            }
+            case 2: {
+                System.out.print(TEXT_SUCCESS_ADD_ILLUSTRATION);
+                break;
+            }
+            case 3: {
+                System.out.print(TEXT_SUCCESS_DEL_BOOK_ILL);
+                break;
+            }
+            case 4: {
+                System.out.print(TEXT_NOT_FIND_ILLUSTRATION_DELETE);
+                break;
+            }
+            case 5: {
+                System.out.print(TEXT_WARN_NO_BOOK);
+                break;
+            }
+            case 6: {
+                System.out.print(TEXT_SUCCESS_CATALOG_EXPORT);
+                break;
+            }
+            case 7: {
+                System.out.print(TEXT_SUCCESS_ADD_BOOK_EXPORT);
+                break;
+            }
+            case 8: {
+                System.out.print(TEXT_ERROR_BOOK_ISBN);
+                break;
+            }
+            case 9: {
+                System.out.print(TEXT_SUCCESS_DEL_BOOK);
+                break;
+            }
+            case 10: {
+                System.out.print(TEXT_BOOK_ADD_ILLUSTRATION);
+                break;
+            }
+            case 11: {
+                System.out.print(TEXT_SUCCESS_NEW_DB);
+                break;
+            }
+            case 12: {
+                System.out.print(TEXT_SUCCESS_DELETED_ILLUSTRATION);
+                break;
+            }
+            case 13: {
+                System.out.print(MENU_TEXT_SEARCH_ILLUSTRATION);
+                break;
+            }
+            case 14: {
+                System.out.print(TEXT_WARN_NEW_DATABASE);
+                break;
+            }
+            case 15: {
+                System.out.print(TEXT_INVITE_ENTER_NUMBER);
+                break;
+            }
         }
     }
 }

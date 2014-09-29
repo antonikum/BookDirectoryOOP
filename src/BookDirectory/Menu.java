@@ -4,20 +4,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+/**
+ * Интерфейс для объектов - пунктов меню (разделов).
+ */
 interface MenuInterface{
     boolean action1();
     boolean action2();
     boolean action3();
     boolean action4();
-    void action5();
-    void action6();
 }
 
 
 /**
- *
+ * Абстрактный класс, содержащий общие методы для разделов программы.
+ * Также в нём определны "заглушки" для методов action1, action2, action3, action4.
  */
-public class Menu {
+public abstract class Menu {
 
     /**
      * "Логгер" класса.
@@ -64,10 +66,6 @@ public class Menu {
         return select;
     }
 
-    public void printMenu(Integer number) {
-        View.getInstance().printMenu(number);
-    }
-
     /**
      * Служебный метод для возврата в главное меню программы.
      * @return Boolean
@@ -80,23 +78,84 @@ public class Menu {
         return true;
     }
 
+    /**
+     * Служебный метод для проверки допустимых значений атрибутов книги.
+     * @param isbn String - Isbn книги.
+     * @param title String - навзвание книги.
+     * @param author String - автор книги.
+     * @return Boolean: true, если переданные атрибуты соответствуют допустимым значениям, иначе - false.
+     */
+    public boolean checkBookValues(String isbn, String title, String author){
+        boolean resultCheck = false;
+        if(isbn.length() <= Model.getBookIsbnSize() &&
+                title.length() <= Model.getBookTitleSize() &&
+                author.length() <= Model.getBookAuthorSize() && !(isbn.isEmpty()) ){
+            char forbidden[] = { '/', ':', '*', '|', '<', '>', '\"', '\''};
+            for(char symbol : forbidden){
+                Pattern pattern = Pattern.compile(".*["+symbol+"]+.*");
+                if(pattern.matcher(isbn).lookingAt()){
+                    resultCheck = false;
+                    break;
+                }
+                else{
+                    resultCheck = true;
+                }
+            }
+            Pattern patternBackSlash = Pattern.compile(".*[\\\\]+.*");
+            if(patternBackSlash.matcher(isbn).lookingAt()){
+                resultCheck = false;
+            }
+            if(!resultCheck){View.getInstance().printErrorText(13);}
+        }
+        else if(!(isbn.length() <= Model.getBookIsbnSize()) || isbn.isEmpty()){
+            View.getInstance().printMessage(8);
+        }
+        else if(!(title.length() <= Model.getBookTitleSize())){
+            View.getInstance().printErrorText(11);
+        }
+        else {View.getInstance().printErrorText(12);}
+        if(LOGGER.isLoggable(Level.FINE)){
+            LOGGER.log(Level.FINE, "The result of check book values is: ", resultCheck);}
+        return resultCheck;
+    }
+
+    /**
+     * Служебный метод для проверки допустимых значений атрибутов иллюстрации.
+     * @param imageId String - Id иллюстрации.
+     * @param name String - название иллюстрации.
+     * @param author String - автор иллюстрации.
+     * @return Boolean: true, если переданные атрибуты соответствуют допустимым значениям, иначе - false.
+     */
+    public boolean checkIllustrationValues(String imageId, String name, String author){
+        boolean resultCheck = false;
+        if(imageId.length() <= Model.getIllustrationIdSize() && name.length() <= Model.getIllustrationNameSize() && author.length() <= Model.getIllustrationAuthorSize() && !(imageId.isEmpty())){
+            resultCheck = true;
+        }
+        else if(!(imageId.length() <= Model.getIllustrationIdSize()) || imageId.isEmpty()){
+            View.getInstance().printErrorText(8);
+        }
+        else if(!(name.length() <= Model.getIllustrationNameSize())){
+            View.getInstance().printErrorText(11);
+        }
+        else {View.getInstance().printErrorText(12);}
+        if(LOGGER.isLoggable(Level.FINE)){
+            LOGGER.log(Level.FINE, "The result of check illustration values is: ", resultCheck);}
+        return resultCheck;
+    }
+
     public boolean action1(){
-        boolean result = false;
-        return result;
+        return false;
     }
 
     public boolean action2(){
-        boolean result = false;
-        return result;
+        return false;
     }
 
     public boolean action3(){
-        boolean result = false;
-        return result;
+        return false;
     }
 
     public boolean action4(){
-        boolean result = false;
-        return result;
+        return false;
     }
 }

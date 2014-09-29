@@ -35,8 +35,7 @@ public class Main
             /**Main engine **/
             Model.setLocaleWindows();
             View.getInstance().initializeView();
-            //Controller.getInstance().mainMenuDraw();
-            Controller.getInstance().mainMenuDrawNew();
+            Controller.getInstance().mainMenuDraw();
 
             Runtime runtime = Runtime.getRuntime();
             runtime.gc();

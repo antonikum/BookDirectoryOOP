@@ -14,80 +14,68 @@ import java.util.logging.*;
 
 /**
  * Класс "Модель" - источник данных (модель MVC).
+ *
  * @author dyakonov
  * @version 1.4
  */
 public abstract class Model {
     /**
-     * Значение этого поля устанавливает в каком режиме работает программа.
-     * Если true - режим разработки (удобно в IDE), если false - рабочая система.
-     */
-    private static boolean developmentMode;
-
-    /**
-     * Строка - драйвер JDBC.
-     */
-    private static String DRIVER;
-
-    /**
-     * Url JDBC.
-     */
-    private static String URL;
-
-    /**
-     * Директория, в которой находится база данных.
-     */
-    private static String DB_NAME;
-
-    /**
-     * Максимальная длина isbn книги.
-     */
-    private static Integer BOOK_ISBN_SIZE;
-
-    /**
-     * Максимальная длина названия книги.
-     */
-    private static Integer BOOK_TITLE_SIZE;
-
-    /**
-     * Максимальная длина поля автор книги.
-     */
-    private static Integer BOOK_AUTHOR_SIZE;
-
-    /**
-     * Максимальная длина поля id иллюстрации.
-     */
-    private static Integer ILLUSTRATION_ID_SIZE;
-
-    /**
-     * Максимальная длина поля название иллюстрации.
-     */
-    private static Integer ILLUSTRATION_NAME_SIZE;
-
-    /**
-     * Максимальная длина поля автор иллюстрации.
-     */
-    private static Integer ILLUSTRATION_AUTHOR_SIZE;
-
-    /**
-     * Уровень для записей логгера в приложении.
-     */
-    private static Level LOG_LEVEL;
-
-    /**
      * Символ-обозначение переноса строки в системе.
      */
     private static final String NR = System.getProperty("line.separator");
-
     /**
      * Кодировка система, в которой запущено приложение.
      */
     private static final String ENCODING_VALUE = encoding();
-
     /**
      * "Логгер" класса.
      */
     private static final Logger LOGGER = Logger.getLogger(Model.class.getName());
+    /**
+     * Значение этого поля устанавливает в каком режиме работает программа.
+     * Если true - режим разработки (удобно в IDE), если false - рабочая система.
+     */
+    private static boolean developmentMode;
+    /**
+     * Строка - драйвер JDBC.
+     */
+    private static String DRIVER;
+    /**
+     * Url JDBC.
+     */
+    private static String URL;
+    /**
+     * Директория, в которой находится база данных.
+     */
+    private static String DB_NAME;
+    /**
+     * Максимальная длина isbn книги.
+     */
+    private static Integer BOOK_ISBN_SIZE;
+    /**
+     * Максимальная длина названия книги.
+     */
+    private static Integer BOOK_TITLE_SIZE;
+    /**
+     * Максимальная длина поля автор книги.
+     */
+    private static Integer BOOK_AUTHOR_SIZE;
+    /**
+     * Максимальная длина поля id иллюстрации.
+     */
+    private static Integer ILLUSTRATION_ID_SIZE;
+    /**
+     * Максимальная длина поля название иллюстрации.
+     */
+    private static Integer ILLUSTRATION_NAME_SIZE;
+    /**
+     * Максимальная длина поля автор иллюстрации.
+     */
+    private static Integer ILLUSTRATION_AUTHOR_SIZE;
+    /**
+     * Уровень для записей логгера в приложении.
+     */
+    private static Level LOG_LEVEL;
 
     /**
      * Метод для получения кодировки в системе.
@@ -149,6 +137,7 @@ public abstract class Model {
 
     /**
      * Метод для ввода данных с клавиатуры
+     *
      * @return String - строка, введённая с клавиатуры
      */
     protected static String keyboardInput() {
