@@ -539,12 +539,42 @@ public abstract class Model {
         } catch (FileNotFoundException e) {
             View.getInstance().printErrorText(14);
             LOGGER.log(Level.SEVERE, "File of properties not found: ", e.toString());
+            loadDefaultProperties();
         } catch (UnsupportedEncodingException e) {
             View.getInstance().printErrorText(21);
             LOGGER.log(Level.SEVERE, "File of properties have unsupported encoding: ", e.toString());
+            loadDefaultProperties();
         } catch (IOException e) {
             View.getInstance().printErrorText(22);
             LOGGER.log(Level.SEVERE, "When loading the configuration file error occurred input\\output", e.toString());
+            loadDefaultProperties();
+        }
+    }
+
+    /**
+     * Метод для загрузки конфигурационных параметров по-умолчанию.
+     *
+     */
+    public static void loadDefaultProperties() {
+        Properties properties = new Properties();
+        try {
+            developmentMode = false;
+            DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+            URL = "jdbc:derby:";
+            DB_NAME = "db/booksdb";
+            BOOK_ISBN_SIZE = 17;
+            BOOK_TITLE_SIZE = 128;
+            BOOK_AUTHOR_SIZE = 128;
+            ILLUSTRATION_ID_SIZE = 20;
+            ILLUSTRATION_NAME_SIZE = 128;
+            ILLUSTRATION_AUTHOR_SIZE = 128;
+            LOG_LEVEL = Level.parse(properties.getProperty("logLevel", "ALL"));
+            if (LOGGER.isLoggable(Level.FINE)) {
+                LOGGER.log(Level.FINE, "Warning! Properties by default were loaded!");
+            }
+        } catch (Exception e) {
+            View.getInstance().printErrorText(0);
+            LOGGER.log(Level.SEVERE, "Application Error", e.toString());
         }
     }
 

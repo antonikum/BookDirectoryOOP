@@ -18,12 +18,10 @@ public class Main
         try{
             Model.getProperties("BookDirectory.properties");
             if(!Model.startLogger("logs")){
-                FileHandler fileHandler = new FileHandler("BookDirectoryLog.txt");
-                fileHandler.setEncoding("UTF-8");
+                ConsoleHandler consoleHandler = new ConsoleHandler();
                 Formatter formatTXT = new Model.TxtFormatter();
-                fileHandler.setFormatter(formatTXT);
-                LOGGER.addHandler(fileHandler);
-                LOGGER.setUseParentHandlers(false);
+                consoleHandler.setFormatter(formatTXT);
+                LOGGER.addHandler(consoleHandler);
             }
             LOGGER.log(Level.INFO, "Start application");
             LOGGER.log(Level.INFO, "Java version is ", System.getProperty("java.version") + ", vendor: " + System.getProperty("java.vendor"));
@@ -50,6 +48,7 @@ public class Main
         catch (SecurityException e){View.getInstance().printErrorText(23);}
         catch (Exception e){
             View.getInstance().printErrorText(0);
+            e.printStackTrace();
             LOGGER.log(Level.SEVERE, "Application exception: " + e.toString() + "");
         }
     }

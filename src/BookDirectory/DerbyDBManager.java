@@ -52,6 +52,10 @@ public class DerbyDBManager {
                 View.getInstance().printErrorText(2);
                 LOGGER.log(Level.SEVERE, "SQLException: " + e.toString() + "", sqlCreateTableBook);
             }
+            catch (Exception e){
+                View.getInstance().printErrorText(0);
+                LOGGER.log(Level.SEVERE, "Application error: " + e.toString() + "");
+            }
         }
     }
 
@@ -71,7 +75,6 @@ public class DerbyDBManager {
             if (LOGGER.isLoggable(Level.WARNING)) {
                 LOGGER.log(Level.WARNING, "Creation of a new database!");
             }
-
         }
         return (exists);
     }

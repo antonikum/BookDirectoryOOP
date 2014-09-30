@@ -63,9 +63,9 @@ public final class View {
     private final String TEXT_ERROR_BD = "Критическая ошибка: нет доступа к бд.\n";
     private final String TEXT_ERROR_TABLE_BLOCK = "Ошибка: таблица заблокирована.\n";
     private final String TEXT_ERROR_KEYBOARD = "Критическая ошибка: ввод с клавиатуры.\n";
-    private final String TEXT_ERROR_IN_OUT = "\nОшибка ввода\\вывода.\n";
+    private final String TEXT_ERROR_IN_OUT = "\nInput\\Output error!\n";
     private final String TEXT_ERROR_LOGGER_SECURITY = "\nОшибка: не удалось создать файл лога из-за политики безопасности.\n";
-    private final String TEXT_ERROR = "Общая ошибка.\n";
+    private final String TEXT_ERROR = "Application Error.\n";
     private final String TEXT_ERROR_FILE_WRITE = "Ошибка записи.\n";
     private final String TEXT_ERROR_BOOK_ISBN = "Ошибка ввода ISBN: максимум 17 символов и не пустое значение.\n";
     private final String TEXT_ERROR_BOOK_ISBN_FORBIDDEN = "Ошибка ввода ISBN: Вы ввели запрещённые символы (/, \\, <, >, |, :, *, ')\n";
@@ -77,7 +77,7 @@ public final class View {
     private final String TEXT_ERROR_BOOK_COUNT = "Ошибка ввода количества книг.\n";
     private final String TEXT_ERROR_IMPORT_TAG_BOOK = "Ошибка форматирования: отстутствует тег [Книга]";
     private final String TEXT_ERROR_ILLUSTRATION_DUPLICATE = "\nОшибка, у книги уже есть иллюстрация с таким Id.\n";
-    private final String TEXT_ERROR_FILE_NOT_FOUND = "\nОшибка, файл не найден.\n";
+    private final String TEXT_ERROR_FILE_NOT_FOUND = "\nError, the file it isn't found.\n";
     private final String TEXT_ERROR_IMPORT_FORMAT = "\nОшибка форматирования файла импорта.\n См. справочный файл README.txt в директории import\n";
     private final String TEXT_ERROR_JAVA_NO_METHOD = "\nКритическая ошибка Java. Нет такого метода.\n";
     private final String TEXT_ERROR_UNSUPPORTED_ENCODING = "Error: the system is used a coding format unsupported by application.\n";

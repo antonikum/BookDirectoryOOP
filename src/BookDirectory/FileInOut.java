@@ -92,10 +92,10 @@ public final class FileInOut {
         boolean result = false;
         try {
             File file = new File(directoryName);
-            if(LOGGER.isLoggable(Level.WARNING)){
-                LOGGER.log(Level.WARNING, "The new directory was created!", directoryName);
-            }
             result = file.mkdir();
+            if(LOGGER.isLoggable(Level.WARNING)){
+                LOGGER.log(Level.WARNING, "The new directory was created? ("+result+")", directoryName);
+            }
         }
         catch (Exception e){
             View.getInstance().printErrorText(0);
